@@ -161,4 +161,4 @@ cython_debug/
 
 # local dir
 data/
-_instruction.txt
+config/version
