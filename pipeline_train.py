@@ -4,13 +4,6 @@ from src.data_preprocessing import *
 from src.model_training import *
 from src.model_evaluation import roc_auc_score, accuracy_report
 from src.utils import *
-from src.utils import (
-    DIR_RAW_DATA,
-    DIR_PREPROCESS_DATA_ARTIFACTS,
-    DIR_PREPROCESS_DATA_MODELING_TRAIN,
-    DIR_PREPROCESS_DATA_MODELING_TEST,
-    DIR_MODEL
-)
 
 TRAIN_SIZE = 0.9
 RANDOM_STATE = 99
@@ -72,7 +65,8 @@ def preprocess_step() -> Tuple[str, Dict[str, str]]:
     logger.debug("STEP PROCESSING")
 
     # read data
-    df_application_train, df_bereau, df_bereau_balance, df_previous_application, df_pos_cash_balance, df_installment_payments = read_raw_data()
+    df_application_train, df_bereau, df_bereau_balance, df_previous_application, \
+        df_pos_cash_balance, df_installment_payments = read_raw_data()
 
     # column description
     list_col_name_numeric = list_col_numeric.copy() # save later
@@ -282,7 +276,7 @@ def inference_config(version: str):
 
     config = {
         "version": version,
-        "probability_threshold": 0.04
+        "probability_threshold": 0.4
     }
 
     cre8_dir(dir_inference_cfg, logger=logger)

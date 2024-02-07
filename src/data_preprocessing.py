@@ -406,7 +406,7 @@ def merge_pos_cash_bal(df_id_ref: pd.DataFrame, df_pos_cash_bal: pd.DataFrame, n
 
 
 def merge_installment_payment(df_id_ref: pd.DataFrame, df_inst_paymnt: pd.DataFrame,
-                              list_col_name_nominal: Optional[List[str]], list_col_name_numeric: Optional[List[str]]) -> pd.DataFrame:
+                              list_col_name_nominal: Optional[List[str]] = None, list_col_name_numeric: Optional[List[str]] = None) -> pd.DataFrame:
     list_feature_name_nominal = []
     list_feature_name_numeric = ['mean_day_of_payment_bf_deadline', 'ratio_payment_short']
 
