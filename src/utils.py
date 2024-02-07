@@ -12,7 +12,7 @@ import joblib
 import sklearn
 
 # get project root dir
-DIR_PROJECT_ROOT = os.getcwd()
+DIR_PROJECT_ROOT = os.path.dirname(os.getcwd())
 
 # get all project sub dirs
 DIR_CONFIG = os.path.join(DIR_PROJECT_ROOT, 'config')
