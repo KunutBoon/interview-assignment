@@ -15,12 +15,12 @@ from sklearn.feature_selection import SelectFromModel
 from sklearn.base import BaseEstimator, TransformerMixin
 import xgboost as xgb
 
-from utils import DIR_PROJECT_ROOT, load_dict, get_resource_utilize
+from src.utils import DIR_CONFIG, load_dict, get_resource_utilize
 
 N_JOBS = get_resource_utilize()
 RANDOM_SEED = 99
 
-path_training_cfg = os.path.join(DIR_PROJECT_ROOT, 'config', 'training', 'hyper_param_config.json')
+path_training_cfg = os.path.join(DIR_CONFIG, 'training', 'hyper_param_config.json')
 
 
 class FeatureSelector(BaseEstimator, TransformerMixin):

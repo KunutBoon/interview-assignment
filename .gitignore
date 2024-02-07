@@ -162,3 +162,5 @@ cython_debug/
 # local dir
 data/
 config/version
+config/inference
+model_pipeline/

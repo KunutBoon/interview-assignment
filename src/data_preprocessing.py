@@ -5,8 +5,6 @@ from functools import reduce
 
 import numpy as np
 import pandas as pd
-import sklearn
-from sklearn.preprocessing import MinMaxScaler, OneHotEncoder
 
 
 col_name_id_appl = 'SK_ID_CURR'

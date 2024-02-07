@@ -9,11 +9,13 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import joblib
+import sklearn
 
 # get project root dir
 DIR_PROJECT_ROOT = os.getcwd()
 
 # get all project sub dirs
+DIR_CONFIG = os.path.join(DIR_PROJECT_ROOT, 'config')
 DIR_DATA = os.path.join(DIR_PROJECT_ROOT, 'data')
 
 DIR_RAW_DATA = os.path.join(DIR_DATA, 'raw')
@@ -24,6 +26,8 @@ DIR_PREPROCESS_DATA_MODELING = os.path.join(DIR_PREPROCESS_DATA_PROD, 'process_d
 
 DIR_PREPROCESS_DATA_MODELING_TRAIN = os.path.join(DIR_PREPROCESS_DATA_MODELING, 'train')
 DIR_PREPROCESS_DATA_MODELING_TEST = os.path.join(DIR_PREPROCESS_DATA_MODELING, 'test')
+
+DIR_MODEL = os.path.join(DIR_PROJECT_ROOT, 'model_pipeline')
 
 
 def get_resource_utilize() -> int:
@@ -37,10 +41,12 @@ def get_resource_utilize() -> int:
     return resource_util
 
 
-def cre8_dir(dir: str, logger: logging.RootLogger) -> None:
+def cre8_dir(dir: str, logger: Optional[logging.RootLogger] = None) -> None:
     if not os.path.exists(dir):
         os.makedirs(dir)
-        logger.debug("Directory created at {}".format(dir))
+
+        if logger is not None:
+            logger.debug("Directory created at {}".format(dir))
 
 
 def cre8_file_suffix() -> str:
@@ -124,6 +130,9 @@ def get_logger(logger_name: str, path_log_filename: Optional[str] = None, log_le
 
     # create file handler for logger
     if path_log_filename is not None:
+        dir_log_filename = os.path.dirname(path_log_filename)
+        cre8_dir(dir_log_filename)
+
         file_handler = logging.FileHandler(path_log_filename)
         file_handler.setLevel(level=logging.DEBUG)
         file_handler.setFormatter(log_file_format)
@@ -182,3 +191,14 @@ def load_ndarray(load_path: str, logger: logging.RootLogger) -> np.array:
         arr = np.load(f)
     logger.debug("Numpy array file loaded from {}".format(load_path))
     return arr
+
+
+def save_model(model: sklearn.pipeline.Pipeline, save_path: str, logger: logging.RootLogger) -> None:
+    joblib.dump(model, save_path)
+    logger.debug("Sklearn model obj saved at {}".format(save_path))
+
+
+def load_model(load_path: str, logger: logging.RootLogger) -> List:
+    model = joblib.load(load_path)
+    logger.debug("Sklearn model obj loaded from {}".format(load_path))
+    return model
