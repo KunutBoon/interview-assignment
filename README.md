@@ -28,7 +28,7 @@ First of all, the python environment is required with libraries listed inside th
 Here are the versions of Conda environment which was used to complete the assignment
 ```
 conda == 23.5.2
-python == 3.10.7
+python == 3.9.18
 ```
 
 To easily manage all dependencies, Conda virtual environment is recommended. You can use this command to manage the environment after installing conda (Miniconda 3)
@@ -45,7 +45,7 @@ Next, all given dataset from the Kaggle challenge are needed as a input of this 
 ```
 ROOT
 ├── data
-│   └── raw  ** All the data must put in this directory **
+│   └── raw  ** All the data must be stored inside this directory **
 │         └── <file_1>.csv
 │         └── <file_2>.csv
 │         └── ....
