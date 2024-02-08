@@ -9,7 +9,6 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import joblib
-import sklearn
 
 # get project root dir
 DIR_PROJECT_ROOT = os.path.dirname(os.getcwd())
@@ -196,12 +195,12 @@ def load_ndarray(load_path: str, logger: logging.RootLogger) -> np.array:
     return arr
 
 
-def save_model(model: sklearn.pipeline.Pipeline, save_path: str, logger: logging.RootLogger) -> None:
+def save_model(model, save_path: str, logger: logging.RootLogger) -> None:
     joblib.dump(model, save_path)
     logger.debug("Sklearn model obj saved at {}".format(save_path))
 
 
-def load_model(load_path: str, logger: logging.RootLogger) -> List:
+def load_model(load_path: str, logger: logging.RootLogger):
     model = joblib.load(load_path)
     logger.debug("Sklearn model obj loaded from {}".format(load_path))
     return model
